@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Brand Colors — warm, child-friendly, premium ─────────── */
+  --color-background:   hsl(42, 60%, 98%);        /* warm cream white */
+  --color-foreground:   hsl(220, 28%, 13%);        /* deep navy */
+
+  --color-card:         hsl(0, 0%, 100%);
+  --color-card-foreground: hsl(220, 28%, 13%);
+
+  /* Primary — vibrant teal/cyan: trustworthy + fresh */
+  --color-primary:      hsl(196, 85%, 42%);
+  --color-primary-dark: hsl(196, 85%, 33%);
+  --color-primary-light:hsl(196, 85%, 94%);
+  --color-primary-foreground: hsl(0, 0%, 100%);
+
+  /* Secondary — warm sunny amber */
+  --color-secondary:    hsl(38, 96%, 52%);
+  --color-secondary-dark: hsl(38, 96%, 42%);
+  --color-secondary-light: hsl(38, 96%, 93%);
+  --color-secondary-foreground: hsl(38, 60%, 16%);
+
+  /* Accent — cheerful coral/orange */
+  --color-accent:       hsl(16, 90%, 55%);
+  --color-accent-dark:  hsl(16, 90%, 45%);
+  --color-accent-light: hsl(16, 90%, 94%);
+  --color-accent-foreground: hsl(0, 0%, 100%);
+
+  /* Rose — soft pink */
+  --color-rose:         hsl(340, 78%, 56%);
+  --color-rose-light:   hsl(340, 78%, 95%);
+  --color-rose-foreground: hsl(0, 0%, 100%);
+
+  /* Violet — playful purple */
+  --color-violet:       hsl(262, 72%, 58%);
+  --color-violet-light: hsl(262, 72%, 95%);
+  --color-violet-foreground: hsl(0, 0%, 100%);
+
+  /* Green — fresh mint */
+  --color-green:        hsl(152, 60%, 42%);
+  --color-green-light:  hsl(152, 60%, 93%);
+
+  /* Sky */
+  --color-sky:          hsl(199, 89%, 48%);
+  --color-sky-light:    hsl(199, 89%, 94%);
+
+  --color-muted:        hsl(42, 30%, 95%);
+  --color-muted-foreground: hsl(220, 12%, 48%);
+
+  --color-border:       hsl(42, 20%, 88%);
+  --color-input:        hsl(42, 20%, 88%);
+  --color-ring:         hsl(196, 85%, 42%);
+
+  --color-destructive:  hsl(0, 84%, 60%);
+  --color-destructive-foreground: hsl(0, 0%, 100%);
+
+  /* ── Radius ────────────────────────────────────────────────── */
+  --radius-4xl: 3rem;
+  --radius-3xl: 2rem;
+  --radius-2xl: 1.5rem;
+  --radius-xl:  1.25rem;
+  --radius-lg:  1rem;
+  --radius-md:  0.75rem;
+  --radius-sm:  0.5rem;
+  --radius-xs:  0.375rem;
+
+  /* ── Typography ────────────────────────────────────────────── */
+  --font-sans:    'Nunito', ui-rounded, system-ui, sans-serif;
+  --font-display: 'Poppins', 'Nunito', ui-rounded, sans-serif;
+
+  /* ── Shadows ───────────────────────────────────────────────── */
+  --shadow-card: 0 2px 16px -4px rgba(20,40,60,0.07), 0 1px 4px -2px rgba(20,40,60,0.04);
+  --shadow-card-hover: 0 12px 40px -8px rgba(20,40,60,0.14), 0 4px 12px -4px rgba(20,40,60,0.07);
+  --shadow-nav: 0 2px 20px -4px rgba(20,40,60,0.10);
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    line-height: 1.65;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--color-muted); }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(196, 85%, 65%);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-violet));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-warm {
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-green {
+    background: linear-gradient(135deg, var(--color-green), var(--color-sky));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-dots {
+    background-image: radial-gradient(circle, hsl(196,85%,42%,0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(hsl(196,85%,42%,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(196,85%,42%,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Playful wavy divider */
+  .wave-divider {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60'%3E%3Cpath fill='%23ffffff' d='M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .section-py { @apply py-20 lg:py-28; }
+  .section-px { @apply px-4 sm:px-6 lg:px-8; }
+  .container-max { @apply max-w-7xl mx-auto; }
+
+  .card-shadow { box-shadow: var(--shadow-card); }
+  .card-shadow-hover { box-shadow: var(--shadow-card-hover); }
+
+  .glass {
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  /* Decorative accent shapes */
+  .accent-blob {
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  }
+
+  /* Select dropdown custom arrow */
+  .select-custom {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px !important;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .select-custom:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px hsl(196,85%,42%,0.15);
+  }
+
+  /* Playful Utilities */
+  .dynamic-bounce {
+    transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  .border-dashed-playful {
+    border-style: dashed;
+    border-width: 4px;
+    border-radius: var(--radius-3xl);
+  }
+
+  /* Staggered entry animation delays */
+  .stagger-1 { animation-delay: 100ms; }
+  .stagger-2 { animation-delay: 200ms; }
+  .stagger-3 { animation-delay: 300ms; }
+  .stagger-4 { animation-delay: 400ms; }
+  .stagger-5 { animation-delay: 500ms; }
+}
+
+/* Accordion animation */
+@keyframes accordion-down {
+  from { height: 0; opacity: 0; }
+  to { height: var(--radix-accordion-content-height); opacity: 1; }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); opacity: 1; }
+  to { height: 0; opacity: 0; }
+}
+.data-\[state\=open\]\:animate-accordion-down[data-state=open] {
+  animation: accordion-down 0.25s ease-out;
+}
+.data-\[state\=closed\]\:animate-accordion-up[data-state=closed] {
+  animation: accordion-up 0.22s ease-in;
+}

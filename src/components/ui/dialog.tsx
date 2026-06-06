@@ -49,13 +49,16 @@ function DialogContent({
   className,
   children,
   showCloseButton = true,
+  showOverlay = true, // Added default overlay configuration prop
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Content> & {
   showCloseButton?: boolean
+  showOverlay?: boolean // Typed configuration extension flag
 }) {
   return (
     <DialogPortal>
-      <DialogOverlay />
+      {/* Conditionally renders standard overlay path based on your flags */}
+      {showOverlay && <DialogOverlay />}
       <DialogPrimitive.Content
         data-slot="dialog-content"
         className={cn(
@@ -69,11 +72,10 @@ function DialogContent({
           <DialogPrimitive.Close data-slot="dialog-close" asChild>
             <Button
               variant="ghost"
-              className="absolute top-2 right-2"
+              className="absolute top-4 right-4 z-50 p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-700 rounded-xl transition-colors"
               size="sm"
             >
-              <XIcon
-              />
+              <XIcon className="h-4 w-4 stroke-[2.5]" />
               <span className="sr-only">Close</span>
             </Button>
           </DialogPrimitive.Close>
@@ -82,7 +84,6 @@ function DialogContent({
     </DialogPortal>
   )
 }
-
 function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div

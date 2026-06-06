@@ -101,51 +101,85 @@ export default function HeroSlider() {
         <section
             className="relative w-full overflow-hidden bg-[#FAF9F5] py-8 lg:py-0 flex flex-col justify-center"
             style={{ minHeight: 'max(100svh, 780px)' }}
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
         >
+            {/* ── CLEANED CELESTIAL BACKGROUND CANVAS ── */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-                {/* Soft Gradients */}
+                {/* Soft Ambient Blur Gradients */}
                 <div className="absolute top-[-5%] left-[-5%] w-[40%] h-[45%] bg-sky-200/50 rounded-full blur-[100px]" />
                 <div className="absolute bottom-[-5%] right-[5%] w-[45%] h-[45%] bg-amber-200/40 rounded-full blur-[120px]" />
 
-                {/* Sun & Moon Celestial Pair */}
-                <div className="absolute top-12 left-1/3 opacity-20 hidden xl:block">
+                {/* Fixed Animated Sun - Desktop Frame */}
+                <div className="absolute top-6 left-1/3 opacity-25 hidden md:block">
                     <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ repeat: Infinity, duration: 60, ease: 'linear' }}
                     >
-                        <Sun className="w-24 h-24 text-amber-500" />
+                        <Sun className="w-20 h-20 md:w-28 md:h-28 text-amber-500 fill-amber-300" />
                     </motion.div>
                 </div>
-                <div className="absolute bottom-20 right-1/4 opacity-10 hidden xl:block">
-                    {/* Using a circle or Moon icon if available; Lucide doesn't have a direct moon, so we use a styled div */}
-                    <div className="w-20 h-20 rounded-full bg-slate-300 blur-[2px] shadow-[0_0_20px_rgba(203,213,225,0.5)]" />
+
+                {/* 🌟 NEW: Mobile Specific Animated Sun (Only visible on small phones) */}
+                <div className="absolute top-4 right-6 opacity-25 block md:hidden">
+                    <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ repeat: Infinity, duration: 45, ease: 'linear' }}
+                    >
+                        <Sun className="w-14 h-14 text-amber-500 fill-amber-300" />
+                    </motion.div>
                 </div>
 
-                {/* Decorative Floating Clouds */}
-                <motion.div
-                    animate={{ x: [0, 50, 0] }}
-                    transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-                    className="absolute top-[20%] left-[10%] opacity-30"
-                >
-                    <Cloud className="w-24 h-24 text-white" />
+                {/* Moon Companion Circle Layout */}
+                <div className="absolute bottom-24 right-1/3 opacity-15 hidden lg:block">
+                    <div className="w-16 h-16 rounded-full bg-slate-300 blur-[1px] shadow-[0_0_20px_rgba(203,213,225,0.4)]" />
+                </div>
+
+                {/* ── 10+ Fluffy Flowing Clouds Vector Cluster ── */}
+                {/* Column 1 - Left Edge Canvas */}
+                <motion.div animate={{ x: [0, 25, 0] }} transition={{ repeat: Infinity, duration: 18, ease: "easeInOut" }} className="absolute top-[12%] left-[4%] opacity-25">
+                    <Cloud className="w-16 h-16 text-white fill-sky-50/40" />
+                </motion.div>
+                <motion.div animate={{ x: [0, -30, 0] }} transition={{ repeat: Infinity, duration: 22, ease: "easeInOut" }} className="absolute top-[38%] left-[6%] opacity-30">
+                    <Cloud className="w-24 h-24 text-white fill-sky-50/50" />
+                </motion.div>
+                <motion.div animate={{ x: [0, 20, 0] }} transition={{ repeat: Infinity, duration: 25, ease: "easeInOut" }} className="absolute bottom-[28%] left-[5%] opacity-20">
+                    <Cloud className="w-14 h-14 text-white" />
                 </motion.div>
 
-                <motion.div
-                    animate={{ x: [0, -40, 0] }}
-                    transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
-                    className="absolute top-[10%] right-[15%] opacity-20"
-                >
-                    <Cloud className="w-32 h-32 text-white" />
+                {/* Column 2 - Left Inner Frame */}
+                <motion.div animate={{ x: [0, 15, 0] }} transition={{ repeat: Infinity, duration: 28, ease: "easeInOut" }} className="absolute top-[25%] left-[20%] opacity-15">
+                    <Cloud className="w-12 h-12 text-white" />
+                </motion.div>
+                <motion.div animate={{ x: [0, -20, 0] }} transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }} className="absolute bottom-[38%] left-[16%] opacity-25">
+                    <Cloud className="w-20 h-20 text-white fill-sky-50/40" />
                 </motion.div>
 
-                <motion.div
-                    animate={{ x: [0, 30, 0] }}
-                    transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-                    className="absolute bottom-[20%] left-[20%] opacity-25"
-                >
-                    <Cloud className="w-20 h-20 text-white" />
+                {/* Column 3 - Center Right Frame Layout */}
+                <motion.div animate={{ x: [0, 35, 0] }} transition={{ repeat: Infinity, duration: 16, ease: "easeInOut" }} className="absolute top-[15%] right-[28%] opacity-20">
+                    <Cloud className="w-14 h-14 text-white" />
+                </motion.div>
+                <motion.div animate={{ x: [0, -15, 0] }} transition={{ repeat: Infinity, duration: 32, ease: "easeInOut" }} className="absolute bottom-[25%] right-[26%] opacity-15">
+                    <Cloud className="w-12 h-12 text-white" />
+                </motion.div>
+
+                {/* Column 4 - Right Outer Canvas Border */}
+                <motion.div animate={{ x: [0, -35, 0] }} transition={{ repeat: Infinity, duration: 17, ease: "easeInOut" }} className="absolute top-[10%] right-[8%] opacity-30">
+                    <Cloud className="w-22 h-22 text-white fill-sky-50/40" />
+                </motion.div>
+                <motion.div animate={{ x: [0, 25, 0] }} transition={{ repeat: Infinity, duration: 26, ease: "easeInOut" }} className="absolute top-[32%] right-[6%] opacity-25">
+                    <Cloud className="w-18 h-18 text-white fill-sky-50/50" />
+                </motion.div>
+                <motion.div animate={{ x: [0, -12, 0] }} transition={{ repeat: Infinity, duration: 30, ease: "easeInOut" }} className="absolute bottom-[18%] right-[10%] opacity-15">
+                    <Cloud className="w-14 h-14 text-white" />
+                </motion.div>
+
+                {/* Dynamic Subtle Mobile Cloud (Lower down) */}
+                <motion.div animate={{ x: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 15, ease: "easeInOut" }} className="absolute top-[65%] left-1/4 opacity-10 block sm:hidden">
+                    <Cloud className="w-10 h-10 text-white" />
+                </motion.div>
+
+                {/* 🌟 NEW: Secondary Mobile Floating Cloud (High up near the brand title) */}
+                <motion.div animate={{ x: [0, -12, 0] }} transition={{ repeat: Infinity, duration: 19, ease: "easeInOut" }} className="absolute top-[5%] left-4 opacity-15 block md:hidden">
+                    <Cloud className="w-12 h-12 text-white fill-sky-50/20" />
                 </motion.div>
             </div>
 
@@ -236,14 +270,13 @@ export default function HeroSlider() {
                                     <img
                                         src={slide.image}
                                         alt={slide.headline}
-                                        // object-contain ensures images never crop; native canvas background fills matching whitespace layout edges cleanly
                                         className="w-full h-full object-contain bg-white rounded-2xl select-none"
                                         draggable={false}
                                     />
                                 </motion.div>
                             </AnimatePresence>
 
-                            {/* Floating Cloud Tag */}
+                            {/* Floating Cloud Tag card indicator overlay */}
                             <motion.div
                                 animate={{ y: [0, -6, 0] }}
                                 transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
@@ -314,17 +347,6 @@ export default function HeroSlider() {
                 <div className="bg-slate-900 text-white font-black text-xs px-3.5 py-2 rounded-xl select-none tracking-widest border border-slate-950 min-w-[65px] text-center shadow-sm">
                     {current + 1}/{HERO_SLIDES.length}
                 </div>
-            </div>
-
-            {/* Slide Timing Track Bar */}
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-200/60 z-40">
-                <motion.div
-                    key={page}
-                    initial={{ width: '0%' }}
-                    animate={{ width: paused ? undefined : '100%' }}
-                    transition={{ duration: 6, ease: 'linear' }}
-                    className="h-full bg-gradient-to-r from-emerald-400 to-teal-400"
-                />
             </div>
         </section>
     )

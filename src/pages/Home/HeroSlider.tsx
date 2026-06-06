@@ -51,7 +51,6 @@ const textVariants: any = {
 
 export default function HeroSlider() {
     const [[page, direction], setPage] = useState([0, 0])
-    const [paused, setPaused] = useState(false)
     const autoPlayTimer = useRef<any | null>(null)
     const thumbnailContainerRef = useRef<HTMLDivElement>(null)
 
@@ -85,15 +84,12 @@ export default function HeroSlider() {
     }, [current])
 
     useEffect(() => {
-        if (paused) {
-            if (autoPlayTimer.current) clearInterval(autoPlayTimer.current)
-            return
-        }
+
         autoPlayTimer.current = setInterval(next, 6000)
         return () => {
             if (autoPlayTimer.current) clearInterval(autoPlayTimer.current)
         }
-    }, [next, paused])
+    }, [next])
 
     const slide = HERO_SLIDES[current]
 
